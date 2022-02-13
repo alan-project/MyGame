@@ -1,4 +1,4 @@
-package net.alanproject.mygame.ui.list
+package net.alanproject.mygame.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import net.alanproject.mygame.R
-import net.alanproject.mygame.databinding.FragmentListBinding
+import net.alanproject.mygame.databinding.FragmentHomeBinding
 
-class ListFragment : Fragment() {
-
-    private lateinit var binding: FragmentListBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
