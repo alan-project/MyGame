@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/frag_home">
+
+    <fragment
+        android:id="@+id/frag_home"
+        android:name="net.alanproject.mygame.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/frag_list"
+        android:name="net.alanproject.mygame.ui.list.ListFragment"
+        tools:layout="@layout/fragment_list"/>
+
+    <fragment
+        android:id="@+id/frag_favorite"
+        android:name="net.alanproject.mygame.ui.favorite.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite"/>
+
+</navigation>

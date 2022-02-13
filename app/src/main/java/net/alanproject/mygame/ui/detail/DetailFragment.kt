@@ -21,6 +21,7 @@ class DetailFragment : Fragment() {
     ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
 
     }
