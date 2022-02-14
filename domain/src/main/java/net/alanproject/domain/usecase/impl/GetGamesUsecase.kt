@@ -5,8 +5,11 @@ import net.alanproject.domain.model.response.games.Games
 import net.alanproject.domain.repository.GameRepository
 import net.alanproject.domain.usecase.GetGames
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GetGamesUsecase(
+@Singleton
+class GetGamesUsecase @Inject constructor(
     private val gameRepository: GameRepository
 ):GetGames {
     override suspend fun get(): Resource<Games> {
