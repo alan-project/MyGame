@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="MAIN"/>
+            android:text="@{vm.games[0].name}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
