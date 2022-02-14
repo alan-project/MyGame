@@ -68,6 +68,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt("androidx.room:room-compiler:$room_version")
 
+    //image loading
+    implementation("io.coil-kt:coil:1.4.0")
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
