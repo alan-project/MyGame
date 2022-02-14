@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.FragmentFavoriteBinding
 import net.alanproject.mygame.ui.detail.DetailViewModel
 
+@AndroidEntryPoint
 class FavoriteFragment: Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding

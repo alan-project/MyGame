@@ -2,13 +2,16 @@ package net.alanproject.mygame.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import net.alanproject.domain.common.Resource
 import net.alanproject.domain.usecase.GetGames
 import timber.log.Timber
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val getGames: GetGames
 ):ViewModel() {
 
@@ -30,10 +33,11 @@ class HomeViewModel(
 
         when(result){
             is Resource.Success ->{
+                Timber.d("result(success): ${result.data?.results}")
 
             }
             is Resource.Error ->{
-
+                Timber.e("result(error): ${result.data?.results}")
             }
 
         }
