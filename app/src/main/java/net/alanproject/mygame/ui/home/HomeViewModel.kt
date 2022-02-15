@@ -39,8 +39,10 @@ class HomeViewModel @Inject constructor(
 
         when(result){
             is Resource.Success ->{
-                Timber.d("result(success): ${result.data?.results}")
+//                Timber.d("result(success): ${result.data?.results?.first()}")
                 _games.value = result.data?.results ?: listOf()
+//                Timber.d("result(_games): ${_games.value}")
+//                Timber.d("result(games): ${games.value}")
             }
             is Resource.Error ->{
                 Timber.e("result(error): ${result.data?.results}")
