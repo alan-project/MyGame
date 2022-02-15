@@ -12,5 +12,4 @@ fun bindBannerImage(view: ImageView, image: String?) {
     view.load(image){
         transformations(RoundedCornersTransformation(25f))
     }
-
 }
