@@ -1,12 +1,15 @@
 package net.alanproject.domain.repository
 
 import net.alanproject.domain.model.response.games.Games
-import net.alanproject.domain.util.Parameters
 
 interface GameRepository {
 
     suspend fun getGames(
-        parameters: Parameters
+        page: Int?,
+        ordering: String?,
+        dates: String?,
+        platforms: String?,
+        genres: String?
     ): Games
 
 }

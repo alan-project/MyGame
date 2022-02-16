@@ -5,9 +5,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import net.alanproject.data.source.RemoteSource
+import net.alanproject.data.source.GameSource
 import net.alanproject.data.source.remote.GameService
-import net.alanproject.data.source.remote.RemoteSourceImpl
+import net.alanproject.data.source.remote.GameSourceImpl
 import net.alanproject.mygame.common.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 abstract class Source {
 
     @Binds
-    abstract fun bindRemoteSource(remoteSource: RemoteSourceImpl): RemoteSource
+    abstract fun bindRemoteSource(remoteSource: GameSourceImpl): GameSource
 }
 
 

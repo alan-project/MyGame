@@ -12,29 +12,28 @@
 
     </data>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toTopOf="parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp">
+>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:foreground="@drawable/gradient_shape"
             app:bannerImage="@{model.backgroundImage}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/roundedCornerImageView" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#7000"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_game_name"
@@ -43,9 +42,23 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/iv_banner"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tv_game_date"
+            android:text="@{model.name}"
             app:layout_constraintStart_toStartOf="@id/iv_banner"
-            tools:text="@{model.name}" />
+            tools:text="TESTTEST" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_game_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@{model.released}"
+            app:layout_constraintStart_toStartOf="@id/iv_banner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="TESTTEST" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.cardview.widget.CardView>
 </layout>
