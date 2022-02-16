@@ -9,10 +9,10 @@ interface GameService {
     @GET("games")
     suspend fun getGames(
         @Query("key") key: String = BuildConfig.API_KEY,
-        @Query("page") page: Int? =1 ,
-        @Query("ordering") order: String? = "-added", // rating, release, metacritic
-        @Query("dates") dates: String? = null,
-        @Query("platforms") platforms: String? = null,
-        @Query("genres") genres: String? = null,
+        @Query("page") page: Int?,
+        @Query("ordering") ordering: String?, // rating, release, metacritic
+        @Query("dates") dates: String?,
+        @Query("platforms") platforms: String?,
+        @Query("genres") genres: String?,
     ): Games
 }
