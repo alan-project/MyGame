@@ -1,6 +1,7 @@
 package net.alanproject.mygame.ui.home
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
+import net.alanproject.mygame.common.showHorizontalPreview
+
 import net.alanproject.mygame.databinding.FragmentHomeBinding
-import net.alanproject.mygame.ui.home.adapter.TopBannerAdapter
-import timber.log.Timber
+import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
+import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -52,17 +57,36 @@ class HomeFragment : Fragment() {
 
     private fun initAdapter(games: List<Result>) {
 //        Timber.d("games.size: ${games.size}")
-        if(!games.isNullOrEmpty()){
-            val adapter = TopBannerAdapter(games.take(5))
-            binding.vpTopBanner.adapter = adapter
-            binding.vpTopBanner.setCurrentItem(adapter.itemCount/2,false)
+        if (!games.isNullOrEmpty()) {
+            val adapter = HrzFullPagerAdapter(games.take(5))
+            binding.vpUpdate.adapter = adapter
+            binding.vpUpdate.setCurrentItem(adapter.itemCount / 2, false)
 
         }
 
+        if (!games.isNullOrEmpty()) {
+            val adapter = HrzSubPagerAdapter(games.take(5))
+            binding.vpNew.adapter = adapter
+            binding.vpNew.setCurrentItem(adapter.itemCount / 2, false)
+            binding.vpNew.showHorizontalPreview()
 
+
+        }
+
+        if (!games.isNullOrEmpty()) {
+            val adapter = HrzSubPagerAdapter(games.take(5))
+            binding.vpUpcoming.adapter = adapter
+            binding.vpUpcoming.setCurrentItem(adapter.itemCount / 2, false)
+            binding.vpUpcoming.showHorizontalPreview()
+
+
+        }
     }
 
     private fun getGames() {
         viewModel.onLoadGames()
     }
 }
+
+
+
