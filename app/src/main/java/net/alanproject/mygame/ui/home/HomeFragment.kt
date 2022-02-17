@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import net.alanproject.domain.model.response.games.Result
@@ -17,6 +19,7 @@ import net.alanproject.mygame.common.showHorizontalPreview
 import net.alanproject.mygame.databinding.FragmentHomeBinding
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
+import net.alanproject.mygame.ui.home.adapter.VrtViewPagerAdapter
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -43,6 +46,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getGames()
         observing()
+        initRankAdapter()
+    }
+
+
+    private fun getGames() {
+        viewModel.onLoadGames()
     }
 
     private fun observing() {
@@ -84,6 +93,7 @@ class HomeFragment : Fragment() {
             binding.vpNew.showHorizontalPreview()
         }
     }
+
     private fun initUpcomingAdapter(upcomingGames: List<Result>) {
         if (!upcomingGames.isNullOrEmpty()) {
             Timber.d("Pager[upcomingGames] : ${upcomingGames.first()}")
@@ -94,9 +104,33 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getGames() {
-        viewModel.onLoadGames()
+    private fun initRankAdapter() {
+
+
+        binding.tabLayout.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener{
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+
+        binding.vpRank.adapter = VrtViewPagerAdapter(requireActivity())
+
+        TabLayoutMediator(binding.tabLayout,binding.vpRank){tab,position->
+            when(position){
+                0 -> tab.text ="ACTION"
+                1 -> tab.text ="STRATEGY"
+                2 -> tab.text ="PUZZLE"
+                3 -> tab.text ="SPORT"
+            }
+        }.attach()
     }
+
 }
 
 
