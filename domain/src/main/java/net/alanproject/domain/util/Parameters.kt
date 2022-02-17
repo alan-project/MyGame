@@ -29,7 +29,7 @@ annotation class DateUnit{
     Genre.ACTION,
     Genre.STRATEGY,
     Genre.PUZZLE,
-    Genre.RACING
+    Genre.SPORT
 )
 
 annotation class Genre {
@@ -37,7 +37,7 @@ annotation class Genre {
         const val ACTION: String = "2,3,4,5"
         const val STRATEGY: String = "10,14"
         const val PUZZLE: String = "7,11,28,17"
-        const val RACING: String = "1,15"
+        const val SPORT: String = "1,15"
     }
 }
 

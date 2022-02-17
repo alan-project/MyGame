@@ -77,7 +77,7 @@ class HomeViewModel @Inject constructor(
                         getGamesByParams(
                             _racingGames,
                             dates = DateUnit.SIX_MONTH.agoDate(),
-                            genres = Genre.RACING
+                            genres = Genre.SPORT
                         )
                     }
                 )
