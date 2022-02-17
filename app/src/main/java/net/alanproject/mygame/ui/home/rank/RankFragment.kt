@@ -14,7 +14,7 @@ import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.common.KEY_GENRE
 import net.alanproject.mygame.databinding.FragmentRankHomeBinding
-import net.alanproject.mygame.ui.home.rank.adapter.RankAdapter
+import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
 
 @AndroidEntryPoint
 class RankFragment : Fragment() {
@@ -60,6 +60,6 @@ class RankFragment : Fragment() {
     }
 
     private fun initAdapter(games: List<Result>) {
-        binding.recyclerRank.adapter = RankAdapter(games.take(5))
+        binding.recyclerRank.adapter = RankRecyclerViewAdapter(games.take(5))
     }
 }

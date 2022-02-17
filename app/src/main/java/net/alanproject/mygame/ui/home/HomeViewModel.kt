@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import net.alanproject.domain.model.response.games.Result
 import net.alanproject.domain.usecase.GetGames
@@ -45,42 +44,58 @@ class HomeViewModel @Inject constructor(
 
         try {
             viewModelScope.launch {
-                joinAll(
-                    launch {
-                        getGamesByParams(
-                            _updateGames,
-                            dates = DateUnit.ONE_WEEK.agoDate()
-                        )
-                        getGamesByParams(
-                            _releaseGames,
-                            dates = DateUnit.ONE_MONTH.agoDate()
-                        )
-                        getGamesByParams(
-                            _upcomingGames,
-                            dates = DateUnit.THREE_MONTH.afterDate()
-                        )
-                        getGamesByParams(
-                            _actionGames,
-                            dates = DateUnit.SIX_MONTH.agoDate(),
-                            genres = Genre.ACTION
-                        )
-                        getGamesByParams(
-                            _strategyGames,
-                            dates = DateUnit.SIX_MONTH.agoDate(),
-                            genres = Genre.STRATEGY
-                        )
-                        getGamesByParams(
-                            _puzzleGames,
-                            dates = DateUnit.SIX_MONTH.agoDate(),
-                            genres = Genre.PUZZLE
-                        )
-                        getGamesByParams(
-                            _racingGames,
-                            dates = DateUnit.SIX_MONTH.agoDate(),
-                            genres = Genre.SPORT
-                        )
-                    }
-                )
+//                joinAll(
+                launch {
+                    getGamesByParams(
+                        _updateGames,
+                        dates = DateUnit.ONE_WEEK.agoDate()
+                    )
+                }
+                launch {
+                    getGamesByParams(
+                        _releaseGames,
+                        dates = DateUnit.ONE_MONTH.agoDate()
+                    )
+                }
+                launch {
+                    getGamesByParams(
+                        _upcomingGames,
+                        dates = DateUnit.THREE_MONTH.afterDate()
+                    )
+                }
+                launch {
+                    getGamesByParams(
+                        _actionGames,
+                        dates = DateUnit.SIX_MONTH.agoDate(),
+                        genres = Genre.ACTION
+                    )
+                }
+                launch {
+                    getGamesByParams(
+                        _strategyGames,
+                        dates = DateUnit.SIX_MONTH.agoDate(),
+                        genres = Genre.STRATEGY
+                    )
+                }
+
+                launch {
+                    getGamesByParams(
+                        _puzzleGames,
+                        dates = DateUnit.SIX_MONTH.agoDate(),
+                        genres = Genre.PUZZLE
+                    )
+                }
+
+                launch {
+
+                    getGamesByParams(
+                        _racingGames,
+                        dates = DateUnit.SIX_MONTH.agoDate(),
+                        genres = Genre.SPORT
+                    )
+                }
+
+//                )
             }
         } catch (exception: Exception) {
             Timber.e("throwable: $exception")

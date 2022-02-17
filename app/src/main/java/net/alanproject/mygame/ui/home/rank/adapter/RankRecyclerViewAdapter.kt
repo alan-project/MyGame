@@ -8,10 +8,10 @@ import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemRankHomeBinding
 
-class RankAdapter(
+class RankRecyclerViewAdapter(
     private val games:List<Result>
 
-) : RecyclerView.Adapter<RankAdapter.RankHolder>() {
+) : RecyclerView.Adapter<RankRecyclerViewAdapter.RankHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankHolder {
         val binding = DataBindingUtil.inflate<ItemRankHomeBinding>(
