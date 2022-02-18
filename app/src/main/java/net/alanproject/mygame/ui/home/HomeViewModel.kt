@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
 
         try {
             viewModelScope.launch {
-//                joinAll(
+
                 launch {
                     getGamesByParams(
                         _updateGames,
@@ -94,8 +94,6 @@ class HomeViewModel @Inject constructor(
                         genres = Genre.SPORT
                     )
                 }
-
-//                )
             }
         } catch (exception: Exception) {
             Timber.e("throwable: $exception")

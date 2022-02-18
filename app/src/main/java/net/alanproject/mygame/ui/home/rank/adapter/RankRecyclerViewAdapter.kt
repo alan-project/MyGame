@@ -10,7 +10,8 @@ import net.alanproject.mygame.databinding.ItemRankHomeBinding
 
 class RankRecyclerViewAdapter(
 
-    private val games:MutableList<Result> = mutableListOf()
+    private val games:MutableList<Result> = mutableListOf(),
+    private val onClickListener:(Result)-> Unit
 ) : RecyclerView.Adapter<RankRecyclerViewAdapter.RankHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankHolder {
@@ -18,7 +19,7 @@ class RankRecyclerViewAdapter(
             LayoutInflater.from(parent.context),
             R.layout.item_rank_home, parent, false
         )
-        return RankHolder(binding)
+        return RankHolder(binding,onClickListener)
 
     }
 
@@ -34,11 +35,15 @@ class RankRecyclerViewAdapter(
 
     override fun getItemCount(): Int  = games.size
     class RankHolder(
-        private val binding: ItemRankHomeBinding
+        private val binding: ItemRankHomeBinding,
+        private val onClickListener:(Result)->Unit
     ):RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game:Result){
             binding.model = game
+            binding.root.setOnClickListener {
+                onClickListener(game)
+            }
             binding.executePendingBindings()
         }
     }
