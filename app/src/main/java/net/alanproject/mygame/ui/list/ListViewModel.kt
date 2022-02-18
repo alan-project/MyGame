@@ -19,13 +19,20 @@ class ListViewModel @Inject constructor(
     private val getGames: GetGames
 ) : ViewModel() {
 
-    private val _games = MutableStateFlow<List<Result>>(listOf())
-    val games: StateFlow<List<Result>> = _games
 
-    init {
+    private val _games = MutableStateFlow<List<Result>>(listOf())
+    val games: StateFlow<List<Result>>
+        get() = _games
+
+
+    private var curPage: Int = 1
+
+    fun onLoadingGames() {
+
         viewModelScope.launch {
             getGamesByParams(
-                _games,
+                page = curPage++,
+                _games = _games,
                 dates = DateUnit.ONE_YEAR.agoDate()
             )
         }
@@ -52,8 +59,8 @@ class ListViewModel @Inject constructor(
         when (result) {
             is Resource.Success -> {
                 Timber.d("result(success): ${result.data?.results?.first()}")
-                _games.value = result.data?.results ?: listOf()
-                Timber.d("result(_games): ${_games.value.first()}")
+
+                _games.value = result.data?.results?: mutableListOf()
             }
             is Resource.Error -> {
                 Timber.e("result(error): ${result.message}")

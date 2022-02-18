@@ -9,8 +9,8 @@ import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemRankHomeBinding
 
 class RankRecyclerViewAdapter(
-    private val games:List<Result>
 
+    private val games:MutableList<Result> = mutableListOf()
 ) : RecyclerView.Adapter<RankRecyclerViewAdapter.RankHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankHolder {
@@ -24,6 +24,12 @@ class RankRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: RankHolder, position: Int) {
         holder.bind(games[position])
+    }
+
+    fun update(newGames:List<Result>){
+        val startPos = games.size
+        games.addAll(newGames)
+        notifyItemRangeChanged(startPos, games.size)
     }
 
     override fun getItemCount(): Int  = games.size

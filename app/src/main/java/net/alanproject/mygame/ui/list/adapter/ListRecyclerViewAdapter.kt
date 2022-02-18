@@ -8,11 +8,13 @@ import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemListBinding
 import net.alanproject.mygame.databinding.ItemRankHomeBinding
+import timber.log.Timber
 
 class ListRecyclerViewAdapter(
-    private val games:List<Result>
+    private val games:MutableList<Result> = mutableListOf()
 
 ) : RecyclerView.Adapter<ListRecyclerViewAdapter.ListHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
         val binding = DataBindingUtil.inflate<ItemListBinding>(
@@ -21,6 +23,12 @@ class ListRecyclerViewAdapter(
         )
         return ListHolder(binding)
 
+    }
+
+    fun update(newGames:MutableList<Result>){
+        val startPos = games.size
+        games.addAll(newGames)
+        notifyItemRangeChanged(startPos, games.size)
     }
 
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
