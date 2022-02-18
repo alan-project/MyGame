@@ -1,5 +1,6 @@
 package net.alanproject.data.source
 
+import net.alanproject.domain.model.response.game.Game
 import net.alanproject.domain.model.response.games.Games
 
 interface GameSource {
@@ -10,5 +11,9 @@ interface GameSource {
         platforms:String?,
         genres:String?
     ): Games
+
+    suspend fun getGame(
+        id:Int
+    ): Game
 
 }
