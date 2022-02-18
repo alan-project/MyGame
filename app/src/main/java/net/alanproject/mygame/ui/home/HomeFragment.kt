@@ -1,5 +1,6 @@
 package net.alanproject.mygame.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
+import net.alanproject.mygame.common.KEY_ID
 import net.alanproject.mygame.common.showHorizontalPreview
 
 import net.alanproject.mygame.databinding.FragmentHomeBinding
+import net.alanproject.mygame.ui.detail.DetailFragment
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.VrtViewPagerAdapter
@@ -76,7 +79,7 @@ class HomeFragment : Fragment() {
     private fun initUpdatePagerAdapter(updateGames: List<Result>) {
         if (!updateGames.isNullOrEmpty()) {
             Timber.d("Pager[updateGames] : ${updateGames.first()}")
-            val adapter = HrzFullPagerAdapter(updateGames.take(5))
+            val adapter = HrzFullPagerAdapter{}
             binding.vpUpdate.adapter = adapter
             binding.vpUpdate.setCurrentItem(adapter.itemCount / 2, false)
 
@@ -87,7 +90,7 @@ class HomeFragment : Fragment() {
 
         if (!newGames.isNullOrEmpty()) {
             Timber.d("Pager[newGames] : ${newGames.first()}")
-            val adapter = HrzSubPagerAdapter(newGames.take(5))
+            val adapter = HrzSubPagerAdapter{  }
             binding.vpNew.adapter = adapter
             binding.vpNew.setCurrentItem(adapter.itemCount / 2, false)
             binding.vpNew.showHorizontalPreview()
@@ -97,7 +100,7 @@ class HomeFragment : Fragment() {
     private fun initUpcomingAdapter(upcomingGames: List<Result>) {
         if (!upcomingGames.isNullOrEmpty()) {
             Timber.d("Pager[upcomingGames] : ${upcomingGames.first()}")
-            val adapter = HrzSubPagerAdapter(upcomingGames.take(5))
+            val adapter = HrzSubPagerAdapter{}
             binding.vpUpcoming.adapter = adapter
             binding.vpUpcoming.setCurrentItem(adapter.itemCount / 2, false)
             binding.vpUpcoming.showHorizontalPreview()

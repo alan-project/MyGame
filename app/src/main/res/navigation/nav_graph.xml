@@ -7,16 +7,28 @@
     <fragment
         android:id="@+id/frag_home"
         android:name="net.alanproject.mygame.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_frag_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/frag_list"
         android:name="net.alanproject.mygame.ui.list.ListFragment"
-        tools:layout="@layout/fragment_list"/>
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_frag_list_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/frag_favorite"
         android:name="net.alanproject.mygame.ui.favorite.FavoriteFragment"
         tools:layout="@layout/fragment_favorite"/>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="net.alanproject.mygame.ui.detail.DetailFragment"
+        android:label="DetailFragment" />
 
 </navigation>

@@ -1,5 +1,6 @@
 package net.alanproject.mygame.ui.home.rank
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import net.alanproject.mygame.R
 import net.alanproject.mygame.common.KEY_GENRE
+import net.alanproject.mygame.common.KEY_ID
 import net.alanproject.mygame.databinding.FragmentRankHomeBinding
+import net.alanproject.mygame.ui.detail.DetailFragment
 import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
 
 @AndroidEntryPoint
@@ -39,13 +42,6 @@ class RankFragment : Fragment() {
         initAdapter()
     }
 
-//    private fun observing() {
-//        lifecycleScope.launchWhenStarted {
-//            viewModel.games.collect { games ->
-//                initAdapter(games)
-//            }
-//        }
-//    }
 
     private fun getGames() {
         val genres: String = arguments?.getString(KEY_GENRE).orEmpty()
@@ -53,6 +49,12 @@ class RankFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        binding.recyclerRank.adapter = RankRecyclerViewAdapter()
+        binding.recyclerRank.adapter = RankRecyclerViewAdapter{ game->
+            val gameId = game.id
+            val intent = Intent(context, DetailFragment::class.java)
+                .putExtra(KEY_ID,gameId)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
     }
 }

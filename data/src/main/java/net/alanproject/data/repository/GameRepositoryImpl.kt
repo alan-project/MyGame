@@ -1,6 +1,7 @@
 package net.alanproject.data.repository
 
 import net.alanproject.data.source.GameSource
+import net.alanproject.domain.model.response.game.Game
 import net.alanproject.domain.model.response.games.Games
 import net.alanproject.domain.repository.GameRepository
 import javax.inject.Inject
@@ -26,5 +27,9 @@ class GameRepositoryImpl @Inject constructor(
             platforms = platforms,
             genres = genres
         )
+    }
+
+    override suspend fun getGame(id: Int): Game {
+        return gameSource.getGame(id)
     }
 }
