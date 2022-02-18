@@ -15,17 +15,18 @@ import javax.inject.Inject
 @HiltViewModel
 class RankViewModel @Inject constructor(
     private val getGames: GetGames
-):ViewModel() {
+) : ViewModel() {
 
     private val _games = MutableStateFlow<List<Result>>(listOf())
-    val games: StateFlow<List<Result>> = _games
+    val games: StateFlow<List<Result>>
+        get() = _games
 
-    fun onLoadGames(genres:String) {
-        try{
+    fun onLoadGames(genres: String) {
+        try {
             viewModelScope.launch {
-                getGamesByParams(_games,genres = genres)
+                getGamesByParams(_games, genres = genres)
             }
-        }catch(exception:Exception){
+        } catch (exception: Exception) {
             Timber.e("throwable: $exception")
         }
     }

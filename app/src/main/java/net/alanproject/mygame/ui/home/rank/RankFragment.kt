@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.common.KEY_GENRE
 import net.alanproject.mygame.databinding.FragmentRankHomeBinding
-import net.alanproject.mygame.ui.home.rank.adapter.RankAdapter
+import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
 
 @AndroidEntryPoint
 class RankFragment : Fragment() {
@@ -38,28 +35,24 @@ class RankFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getData()
-        observing()
+        getGames()
+        initAdapter()
     }
 
-    private fun observing() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.games.collect { games ->
-                initAdapter(games)
-            }
-        }
-    }
+//    private fun observing() {
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.games.collect { games ->
+//                initAdapter(games)
+//            }
+//        }
+//    }
 
-    private fun getData() {
+    private fun getGames() {
         val genres: String = arguments?.getString(KEY_GENRE).orEmpty()
-        getGames(genres)
-    }
-
-    private fun getGames(genres: String) {
         viewModel.onLoadGames(genres)
     }
 
-    private fun initAdapter(games: List<Result>) {
-        binding.recyclerRank.adapter = RankAdapter(games.take(5))
+    private fun initAdapter() {
+        binding.recyclerRank.adapter = RankRecyclerViewAdapter()
     }
 }

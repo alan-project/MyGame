@@ -20,7 +20,7 @@ annotation class DateUnit{
         const val ONE_MONTH = ONE_WEEK*4
         const val THREE_MONTH = ONE_MONTH*3
         const val SIX_MONTH = ONE_MONTH*6
-        const val ONE_YEAR = 365L
+        const val ONE_YEAR = SIX_MONTH*2
     }
 }
 
