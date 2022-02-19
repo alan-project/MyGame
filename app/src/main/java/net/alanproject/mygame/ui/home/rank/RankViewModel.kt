@@ -24,41 +24,15 @@ class RankViewModel @Inject constructor(
     fun onLoadGames(genres: String) {
         try {
             viewModelScope.launch {
-                getGamesByParams(_games, genres = genres)
+
+                when (val result = getGames.get(genres = genres)) {
+                    is Resource.Success -> _games.value = result.data?.results ?: listOf()
+                    is Resource.Error -> Timber.e("result(error): ${result.message}")
+                }
             }
         } catch (exception: Exception) {
             Timber.e("throwable: $exception")
         }
     }
 
-    private suspend fun getGamesByParams(
-        _games: MutableStateFlow<List<Result>>,
-        page: Int? = 1,
-        ordering: String? = "-added",
-        dates: String? = null,
-        platforms: String? = null,
-        genres: String? = null
-    ) {
-        Timber.d("agoDate: $dates")
-        Timber.d("genres: $genres")
-        val result = getGames.get(
-            page = page,
-            ordering = ordering,
-            dates = dates,
-            platforms = platforms,
-            genres = genres
-        )
-
-        when (result) {
-            is Resource.Success -> {
-                Timber.d("result(success): ${result.data?.results?.first()}")
-                _games.value = result.data?.results ?: listOf()
-                Timber.d("result(_games): ${_games.value.first()}")
-            }
-            is Resource.Error -> {
-                Timber.e("result(error): ${result.message}")
-            }
-
-        }
-    }
 }
