@@ -1,7 +1,5 @@
 package net.alanproject.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Game(
     val id: Int = 0,
     val name: String = "",

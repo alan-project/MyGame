@@ -11,11 +11,12 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.FragmentDetailBinding
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
 
-    val args:DetailFragmentArgs by navArgs()
+    private val args:DetailFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModels()
@@ -35,6 +36,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Timber.d("args.gameId: ${args.gameId}")
         viewModel.onLoadGame(args.gameId)
 
     }
