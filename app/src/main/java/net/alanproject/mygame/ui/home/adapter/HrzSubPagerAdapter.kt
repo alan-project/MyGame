@@ -9,6 +9,7 @@ import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemHrzSubBinding
 import net.alanproject.mygame.ui.home.HomeFragmentDirections
+import timber.log.Timber
 
 class HrzSubPagerAdapter(
     private val games: MutableList<Result> = mutableListOf()
@@ -26,10 +27,17 @@ class HrzSubPagerAdapter(
 
     }
 
+    //    fun update(newGames: List<Result>) {
+//        Timber.d("newGames.size: ${newGames.size}")
+//        val startPos = games.size
+//        games.addAll(newGames)
+//        notifyItemRangeChanged(startPos, games.size)
+//    }
     fun update(newGames: List<Result>) {
-        val startPos = games.size
+        Timber.d("newGames.size: ${newGames.size}")
+        games.clear()
         games.addAll(newGames)
-        notifyItemRangeChanged(startPos, newGames.size)
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: HrzSubViewHolder, position: Int) {

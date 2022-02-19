@@ -9,6 +9,7 @@ import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemRankHomeBinding
 import net.alanproject.mygame.ui.home.HomeFragmentDirections
+import timber.log.Timber
 
 class RankRecyclerViewAdapter(
 
@@ -29,6 +30,7 @@ class RankRecyclerViewAdapter(
     }
 
     fun update(newGames: List<Result>) {
+        Timber.d("newGames.size: ${newGames.size}")
         val startPos = games.size
         games.addAll(newGames)
         notifyItemRangeChanged(startPos, games.size)
