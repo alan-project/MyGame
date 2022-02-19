@@ -6,7 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.alanproject.domain.model.response.games.Result
+import net.alanproject.domain.model.Game
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.domain.usecase.GetGames
 import net.alanproject.domain.util.DateUnit
 import net.alanproject.domain.util.Resource
@@ -20,8 +21,8 @@ class ListViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _games = MutableStateFlow<List<Result>>(listOf())
-    val games: StateFlow<List<Result>>
+    private val _games = MutableStateFlow<List<GameInfo>>(listOf())
+    val games: StateFlow<List<GameInfo>>
         get() = _games
 
 

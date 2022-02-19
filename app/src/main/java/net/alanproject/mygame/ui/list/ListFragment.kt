@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
 import net.alanproject.mygame.common.LinearRecyclerViewScrollListener
 import net.alanproject.mygame.databinding.FragmentListBinding

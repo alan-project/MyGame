@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="net.alanproject.domain.model.response.games.Result" />
+            type="net.alanproject.domain.model.GameInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:padding="8dp"
-            app:gameImage = "@{model.backgroundImage}"
+            app:gameImage = "@{model.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

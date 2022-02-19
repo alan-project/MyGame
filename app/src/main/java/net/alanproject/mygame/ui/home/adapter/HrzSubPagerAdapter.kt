@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import net.alanproject.domain.model.response.games.Result
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemHrzSubBinding
 import net.alanproject.mygame.ui.home.HomeFragmentDirections
 import timber.log.Timber
 
 class HrzSubPagerAdapter(
-    private val games: MutableList<Result> = mutableListOf()
+    private val games: MutableList<GameInfo> = mutableListOf()
 ) : RecyclerView.Adapter<HrzSubPagerAdapter.HrzSubViewHolder>() {
 
 
@@ -27,14 +27,14 @@ class HrzSubPagerAdapter(
 
     }
 
-    //    fun update(newGames: List<Result>) {
-//        Timber.d("newGames.size: ${newGames.size}")
-//        val startPos = games.size
-//        games.addAll(newGames)
-//        notifyItemRangeChanged(startPos, games.size)
+    //    fun update(newGameInfos: List<GameInfoResp>) {
+//        Timber.d("newGameInfos.size: ${newGameInfos.size}")
+//        val startPos = GameInfos.size
+//        GameInfos.addAll(newGameInfos)
+//        notifyItemRangeChanged(startPos, GameInfos.size)
 //    }
-    fun update(newGames: List<Result>) {
-        Timber.d("newGames.size: ${newGames.size}")
+    fun update(newGames: List<GameInfo>) {
+        Timber.d("newGameInfos.size: ${newGames.size}")
         games.clear()
         games.addAll(newGames)
         notifyDataSetChanged()
@@ -54,7 +54,7 @@ class HrzSubPagerAdapter(
         private val binding: ItemHrzSubBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(game: Result) {
+        fun bind(game: GameInfo) {
             binding.model = game
             binding.root.setOnClickListener {
                 val action = HomeFragmentDirections.actionFragHomeToDetailFragment(game.id)

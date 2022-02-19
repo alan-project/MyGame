@@ -6,7 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.alanproject.domain.model.response.games.Result
+import net.alanproject.domain.model.Game
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.domain.usecase.GetGames
 import net.alanproject.domain.util.*
 import timber.log.Timber
@@ -17,28 +18,28 @@ class HomeViewModel @Inject constructor(
     private val getGames: GetGames
 ) : ViewModel() {
 
-    private val _updateGames = MutableStateFlow<List<Result>>(listOf())
-    val updateGames: StateFlow<List<Result>> = _updateGames
+    private val _updateGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val updateGames: StateFlow<List<GameInfo>> = _updateGames
 
     //What's Hot Now
-    private val _releaseGames = MutableStateFlow<List<Result>>(listOf())
-    val releaseGames: StateFlow<List<Result>> = _releaseGames
+    private val _releaseGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val releaseGames: StateFlow<List<GameInfo>> = _releaseGames
 
-    private val _upcomingGames = MutableStateFlow<List<Result>>(listOf())
-    val upcomingGames: StateFlow<List<Result>> = _upcomingGames
+    private val _upcomingGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val upcomingGames: StateFlow<List<GameInfo>> = _upcomingGames
 
     //By Genre
-    private val _actionGames = MutableStateFlow<List<Result>>(listOf())
-    val actionGames: StateFlow<List<Result>> = _actionGames
+    private val _actionGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val actionGames: StateFlow<List<GameInfo>> = _actionGames
 
-    private val _strategyGames = MutableStateFlow<List<Result>>(listOf())
-    val strategyGames: StateFlow<List<Result>> = _strategyGames
+    private val _strategyGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val strategyGames: StateFlow<List<GameInfo>> = _strategyGames
 
-    private val _puzzleGames = MutableStateFlow<List<Result>>(listOf())
-    val puzzleGames: StateFlow<List<Result>> = _puzzleGames
+    private val _puzzleGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val puzzleGames: StateFlow<List<GameInfo>> = _puzzleGames
 
-    private val _racingGames = MutableStateFlow<List<Result>>(listOf())
-    val racingGames: StateFlow<List<Result>> = _racingGames
+    private val _racingGames = MutableStateFlow<List<GameInfo>>(listOf())
+    val racingGames: StateFlow<List<GameInfo>> = _racingGames
 
     fun onLoadGames() {
 
@@ -48,7 +49,7 @@ class HomeViewModel @Inject constructor(
                 launch {
                     getGamesByParams(
                         _updateGames,
-                        dates = DateUnit.ONE_WEEK.agoDate()
+                        dates = DateUnit.ONE_MONTH.agoDate()
                     )
                 }
                 launch {
@@ -101,7 +102,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun getGamesByParams(
-        games: MutableStateFlow<List<Result>>,
+        games: MutableStateFlow<List<GameInfo>>,
         dates: String? = null,
         platforms: String? = null,
         genres: String? = null
@@ -117,7 +118,7 @@ class HomeViewModel @Inject constructor(
         when (result) {
             is Resource.Success -> {
                 Timber.d("result(success): ${result.data?.results?.first()}")
-                games.value = result.data?.results ?: listOf()
+                games.value = result.data?.results?: listOf()
                 Timber.d("result(_games): ${games.value.first()}")
             }
             is Resource.Error -> {

@@ -1,8 +1,8 @@
 package net.alanproject.data.source.remote
 
 import net.alanproject.data.BuildConfig
-import net.alanproject.domain.model.response.game.Game
-import net.alanproject.domain.model.response.games.Games
+import net.alanproject.data.model.game.GameResp
+import net.alanproject.data.model.games.GamesResp
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,11 +16,11 @@ interface GameService {
         @Query("dates") dates: String?,
         @Query("platforms") platforms: String?,
         @Query("genres") genres: String?,
-    ): Games
+    ): GamesResp
 
     @GET("games/{id}")
     suspend fun getGame(
         @Path("id") id: Int,
         @Query("key") key: String = BuildConfig.API_KEY
-    ): Game
+    ): GameResp
 }

@@ -1,7 +1,7 @@
 package net.alanproject.domain.usecase.impl
 
+import net.alanproject.domain.model.Games
 import net.alanproject.domain.util.Resource
-import net.alanproject.domain.model.response.games.Games
 import net.alanproject.domain.repository.GameRepository
 import net.alanproject.domain.usecase.GetGames
 import timber.log.Timber

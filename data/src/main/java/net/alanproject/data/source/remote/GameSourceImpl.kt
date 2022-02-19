@@ -1,8 +1,10 @@
 package net.alanproject.data.source.remote
 
+import net.alanproject.data.model.game.mapToDomain
+import net.alanproject.data.model.games.mapToDomain
 import net.alanproject.data.source.GameSource
-import net.alanproject.domain.model.response.game.Game
-import net.alanproject.domain.model.response.games.Games
+import net.alanproject.domain.model.Game
+import net.alanproject.domain.model.Games
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,15 +19,17 @@ class GameSourceImpl @Inject constructor(
         dates: String?,
         platforms: String?,
         genres: String?
-    ): Games = gameService.getGames(
-        page = page,
-        ordering = ordering,
-        dates = dates,
-        platforms = platforms,
-        genres = genres
-    )
+    ): Games{
+      return gameService.getGames(
+          page = page,
+          ordering = ordering,
+          dates = dates,
+          platforms = platforms,
+          genres = genres
+      ).mapToDomain()
+    }
 
     override suspend fun getGame(id: Int): Game {
-       return  gameService.getGame(id)
+       return  gameService.getGame(id).mapToDomain()
     }
 }

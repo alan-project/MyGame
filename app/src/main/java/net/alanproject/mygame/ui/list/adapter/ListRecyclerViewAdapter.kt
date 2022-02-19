@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import net.alanproject.domain.model.response.games.Result
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemListBinding
-import net.alanproject.mygame.databinding.ItemRankHomeBinding
-import timber.log.Timber
 
 class ListRecyclerViewAdapter(
-    private val games:MutableList<Result> = mutableListOf()
+    private val games:MutableList<GameInfo> = mutableListOf()
 
 ) : RecyclerView.Adapter<ListRecyclerViewAdapter.ListHolder>() {
 
@@ -25,7 +23,7 @@ class ListRecyclerViewAdapter(
 
     }
 
-    fun update(newGames:MutableList<Result>){
+    fun update(newGames:MutableList<GameInfo>){
         val startPos = games.size
         games.addAll(newGames)
         notifyItemRangeChanged(startPos, games.size)
@@ -40,7 +38,7 @@ class ListRecyclerViewAdapter(
         private val binding: ItemListBinding
     ):RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(game:Result){
+        fun bind(game:GameInfo){
             binding.model = game
             binding.executePendingBindings()
         }
