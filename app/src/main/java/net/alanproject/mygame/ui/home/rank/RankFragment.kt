@@ -49,12 +49,6 @@ class RankFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        binding.recyclerRank.adapter = RankRecyclerViewAdapter{ game->
-            val gameId = game.id
-            val intent = Intent(context, DetailFragment::class.java)
-                .putExtra(KEY_ID,gameId)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-        }
+        binding.recyclerRank.adapter = RankRecyclerViewAdapter()
     }
 }

@@ -1,6 +1,5 @@
 package net.alanproject.mygame.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import net.alanproject.domain.model.response.games.Result
 import net.alanproject.mygame.R
-import net.alanproject.mygame.common.KEY_ID
 import net.alanproject.mygame.common.showHorizontalPreview
 
 import net.alanproject.mygame.databinding.FragmentHomeBinding
-import net.alanproject.mygame.ui.detail.DetailFragment
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.VrtViewPagerAdapter
@@ -48,7 +45,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getGames()
-        observing()
+        initUpdatePagerAdapter()
+        initNewPagerAdapter()
+        initUpcomingPagerAdapter()
         initRankAdapter()
     }
 
@@ -57,54 +56,28 @@ class HomeFragment : Fragment() {
         viewModel.onLoadGames()
     }
 
-    private fun observing() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.updateGames.collect { games ->
-                initUpdatePagerAdapter(games)
-            }
-        }
-        lifecycleScope.launchWhenStarted {
 
-            viewModel.releaseGames.collect { games ->
-                initNewPagerAdapter(games)
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.upcomingGames.collect { games ->
-                initUpcomingAdapter(games)
-            }
-        }
-    }
-
-    private fun initUpdatePagerAdapter(updateGames: List<Result>) {
-        if (!updateGames.isNullOrEmpty()) {
-            Timber.d("Pager[updateGames] : ${updateGames.first()}")
-            val adapter = HrzFullPagerAdapter{}
+    private fun initUpdatePagerAdapter() {
+            val adapter = HrzFullPagerAdapter()
             binding.vpUpdate.adapter = adapter
             binding.vpUpdate.setCurrentItem(adapter.itemCount / 2, false)
 
-        }
+
     }
 
-    private fun initNewPagerAdapter(newGames: List<Result>) {
-
-        if (!newGames.isNullOrEmpty()) {
-            Timber.d("Pager[newGames] : ${newGames.first()}")
-            val adapter = HrzSubPagerAdapter{  }
+    private fun initNewPagerAdapter() {
+            val adapter = HrzSubPagerAdapter()
             binding.vpNew.adapter = adapter
             binding.vpNew.setCurrentItem(adapter.itemCount / 2, false)
             binding.vpNew.showHorizontalPreview()
-        }
+
     }
 
-    private fun initUpcomingAdapter(upcomingGames: List<Result>) {
-        if (!upcomingGames.isNullOrEmpty()) {
-            Timber.d("Pager[upcomingGames] : ${upcomingGames.first()}")
-            val adapter = HrzSubPagerAdapter{}
+    private fun initUpcomingPagerAdapter() {
+            val adapter = HrzSubPagerAdapter()
             binding.vpUpcoming.adapter = adapter
             binding.vpUpcoming.setCurrentItem(adapter.itemCount / 2, false)
             binding.vpUpcoming.showHorizontalPreview()
-        }
     }
 
     private fun initRankAdapter() {
