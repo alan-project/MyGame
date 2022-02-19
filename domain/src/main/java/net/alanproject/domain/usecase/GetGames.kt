@@ -5,10 +5,10 @@ import net.alanproject.domain.model.response.games.Games
 
 interface GetGames {
     suspend fun get(
-        page: Int?,
-        ordering: String?,
-        dates: String?,
-        platforms: String?,
-        genres: String?
+        page: Int?=1,
+        ordering: String? = "-added",
+        dates: String? = null,
+        platforms: String? = null,
+        genres: String? = null
     ): Resource<Games>
 }

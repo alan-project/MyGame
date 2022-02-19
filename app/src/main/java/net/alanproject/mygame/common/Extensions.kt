@@ -10,7 +10,7 @@ fun ViewPager2.showHorizontalPreview(){
     this.apply {
         clipToPadding = false   // allow full width shown with padding
         clipChildren = false    // allow left/right item is not clipped
-        offscreenPageLimit = 2  // make sure left/right item is rendered
+        offscreenPageLimit = 3  // make sure left/right item is rendered
     }
 
     //increase this offset to show more of left/right

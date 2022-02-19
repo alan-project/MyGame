@@ -101,9 +101,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun getGamesByParams(
-        _games: MutableStateFlow<List<Result>>,
-        page: Int? = 1,
-        ordering: String? = "-added",
+        games: MutableStateFlow<List<Result>>,
         dates: String? = null,
         platforms: String? = null,
         genres: String? = null
@@ -111,8 +109,6 @@ class HomeViewModel @Inject constructor(
         Timber.d("agoDate: $dates")
         Timber.d("genres: $genres")
         val result = getGames.get(
-            page = page,
-            ordering = ordering,
             dates = dates,
             platforms = platforms,
             genres = genres
@@ -121,8 +117,8 @@ class HomeViewModel @Inject constructor(
         when (result) {
             is Resource.Success -> {
                 Timber.d("result(success): ${result.data?.results?.first()}")
-                _games.value = result.data?.results ?: listOf()
-                Timber.d("result(_games): ${_games.value.first()}")
+                games.value = result.data?.results ?: listOf()
+                Timber.d("result(_games): ${games.value.first()}")
             }
             is Resource.Error -> {
                 Timber.e("result(error): ${result.message}")

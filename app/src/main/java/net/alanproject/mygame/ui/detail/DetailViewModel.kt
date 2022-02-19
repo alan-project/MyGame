@@ -23,28 +23,12 @@ class DetailViewModel @Inject constructor(
 
     fun onLoadGame(id: Int) {
         viewModelScope.launch {
-            getGame(_game, id)
+
+            when(val result = getGame.get(id = id)){
+                is Resource.Success -> _game.value = result.data?:Game()
+                is Resource.Error -> Timber.e("result(error): ${result.message}")
+            }
         }
     }
 
-    private suspend fun getGame(
-
-        _game: MutableStateFlow<Game>,
-        id: Int
-
-    ) {
-        val result = getGame.get(id = id)
-
-        when (result) {
-            is Resource.Success -> {
-                Timber.d("result(success): ${result.data}")
-                _game.value = result.data ?:Game()
-                Timber.d("result(_games): ${_game.value}")
-            }
-            is Resource.Error -> {
-                Timber.e("result(error): ${result.message}")
-            }
-
-        }
-    }
 }
