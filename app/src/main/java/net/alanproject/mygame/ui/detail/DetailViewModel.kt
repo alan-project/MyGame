@@ -17,7 +17,7 @@ class DetailViewModel @Inject constructor(
     private val getGame: GetGame
 ) : ViewModel() {
 
-    private val _game = MutableStateFlow<Game>(Game())
+    private val _game = MutableStateFlow(Game())
     val game: StateFlow<Game> = _game
 
 
