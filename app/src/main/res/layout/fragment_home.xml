@@ -37,8 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/black_900"
-                app:layout_constraintTop_toBottomOf="@id/tv_main_update"
-                app:games_update = "@{vm.updateGames}" />
+                app:games_update="@{vm.updateGames}"
+                app:layout_constraintTop_toBottomOf="@id/tv_main_update" />
 
 
             <TextView
@@ -75,7 +75,7 @@
                     android:background="@color/black_900"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    app:games_release = "@{vm.releaseGames}"/>
+                    app:games_release="@{vm.releaseGames}" />
 
                 <TextView
 
@@ -92,8 +92,9 @@
                     android:layout_height="200dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    app:games_upcoming = "@{vm.upcomingGames}"/>
+                    app:games_upcoming="@{vm.upcomingGames}" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_main_rank"
                 style="@style/TV_TITLE_STYLE"
@@ -132,7 +133,6 @@
                     android:layout_height="wrap_content"
                     android:text="SPORT" />
             </com.google.android.material.tabs.TabLayout>
-
 
 
             <androidx.viewpager2.widget.ViewPager2

@@ -15,6 +15,7 @@ import net.alanproject.mygame.ui.detail.DetailViewModel
 @AndroidEntryPoint
 class FavoriteFragment: Fragment() {
 
+
     private lateinit var binding: FragmentFavoriteBinding
     private val viewModel: FavoriteViewModel by viewModels()
 
