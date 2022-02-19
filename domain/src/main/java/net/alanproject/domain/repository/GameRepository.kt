@@ -1,7 +1,7 @@
 package net.alanproject.domain.repository
 
-import net.alanproject.domain.model.response.game.Game
-import net.alanproject.domain.model.response.games.Games
+import net.alanproject.domain.model.Game
+import net.alanproject.domain.model.Games
 
 interface GameRepository {
 

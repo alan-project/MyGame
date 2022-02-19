@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import net.alanproject.domain.model.response.games.Result
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.mygame.R
-import net.alanproject.mygame.databinding.ItemHrzFullBinding
 import net.alanproject.mygame.ui.home.HomeFragmentDirections
+import net.alanproject.mygame.databinding.ItemHrzFullBinding
 import timber.log.Timber
 
 class HrzFullPagerAdapter(
-    private val games: MutableList<Result> = mutableListOf()
+    private val games: MutableList<GameInfo> = mutableListOf()
 ) : RecyclerView.Adapter<HrzFullPagerAdapter.HrzFullViewHolder>() {
 
 
@@ -24,14 +24,14 @@ class HrzFullPagerAdapter(
         return HrzFullViewHolder(binding)
     }
 
-    //    fun update(newGames: List<Result>) {
-//        Timber.d("newGames.size: ${newGames.size}")
-//        val startPos = games.size
-//        games.addAll(newGames)
-//        notifyItemRangeChanged(startPos, games.size)
+    //    fun update(newGameInfos: List<GameInfoInfoResp>) {
+//        Timber.d("newGameInfos.size: ${newGameInfos.size}")
+//        val startPos = GameInfos.size
+//        GameInfos.addAll(newGameInfos)
+//        notifyItemRangeChanged(startPos, GameInfos.size)
 //    }
-    fun update(newGames: List<Result>) {
-        Timber.d("newGames.size: ${newGames.size}")
+    fun update(newGames: List<GameInfo>) {
+        Timber.d("newGameInfos.size: ${newGames.size}")
         games.clear()
         games.addAll(newGames)
         notifyDataSetChanged()
@@ -52,11 +52,11 @@ class HrzFullPagerAdapter(
         private val binding: ItemHrzFullBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(game: Result) {
-            binding.model = game
+        fun bind(GameInfo: GameInfo) {
+            binding.model = GameInfo
 //            val navController = Navigation.findNavController(binding.root)
             binding.root.setOnClickListener {
-                val action = HomeFragmentDirections.actionFragHomeToDetailFragment(game.id)
+                val action = HomeFragmentDirections.actionFragHomeToDetailFragment(GameInfo.id)
 
                 Navigation.findNavController(binding.root).navigate(action)
             }

@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.alanproject.domain.model.response.game.Game
+import net.alanproject.domain.model.Game
 import net.alanproject.domain.usecase.GetGame
 import net.alanproject.domain.util.Resource
 import timber.log.Timber

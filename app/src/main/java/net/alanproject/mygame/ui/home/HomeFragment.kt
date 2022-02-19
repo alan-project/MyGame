@@ -7,25 +7,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import net.alanproject.domain.model.response.games.Result
-import net.alanproject.mygame.R
-import net.alanproject.mygame.common.showHorizontalPreview
-
-import net.alanproject.mygame.databinding.FragmentHomeBinding
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
+import net.alanproject.mygame.R
+import net.alanproject.mygame.common.showHorizontalPreview
 import net.alanproject.mygame.ui.home.adapter.VrtViewPagerAdapter
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: net.alanproject.mygame.databinding.FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -58,32 +52,32 @@ class HomeFragment : Fragment() {
 
 
     private fun initUpdatePagerAdapter() {
-            val adapter = HrzFullPagerAdapter()
-            binding.vpUpdate.adapter = adapter
-            binding.vpUpdate.setCurrentItem(adapter.itemCount / 2, false)
+        val adapter = HrzFullPagerAdapter()
+        binding.vpUpdate.adapter = adapter
+        binding.vpUpdate.setCurrentItem(adapter.itemCount / 2, false)
 
 
     }
 
     private fun initNewPagerAdapter() {
-            val adapter = HrzSubPagerAdapter()
-            binding.vpNew.adapter = adapter
-            binding.vpNew.setCurrentItem(adapter.itemCount / 2, false)
-            binding.vpNew.showHorizontalPreview()
+        val adapter = HrzSubPagerAdapter()
+        binding.vpNew.adapter = adapter
+        binding.vpNew.setCurrentItem(adapter.itemCount / 2, false)
+        binding.vpNew.showHorizontalPreview()
 
     }
 
     private fun initUpcomingPagerAdapter() {
-            val adapter = HrzSubPagerAdapter()
-            binding.vpUpcoming.adapter = adapter
-            binding.vpUpcoming.setCurrentItem(adapter.itemCount / 2, false)
-            binding.vpUpcoming.showHorizontalPreview()
+        val adapter = HrzSubPagerAdapter()
+        binding.vpUpcoming.adapter = adapter
+        binding.vpUpcoming.setCurrentItem(adapter.itemCount / 2, false)
+        binding.vpUpcoming.showHorizontalPreview()
     }
 
     private fun initRankAdapter() {
 
 
-        binding.tabLayout.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener{
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
             }
@@ -97,12 +91,12 @@ class HomeFragment : Fragment() {
 
         binding.vpRank.adapter = VrtViewPagerAdapter(requireActivity())
 
-        TabLayoutMediator(binding.tabLayout,binding.vpRank){tab,position->
-            when(position){
-                0 -> tab.text ="ACTION"
-                1 -> tab.text ="STRATEGY"
-                2 -> tab.text ="PUZZLE"
-                3 -> tab.text ="SPORT"
+        TabLayoutMediator(binding.tabLayout, binding.vpRank) { tab, position ->
+            when (position) {
+                0 -> tab.text = "ACTION"
+                1 -> tab.text = "STRATEGY"
+                2 -> tab.text = "PUZZLE"
+                3 -> tab.text = "SPORT"
             }
         }.attach()
     }

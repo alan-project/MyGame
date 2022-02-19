@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import net.alanproject.domain.model.response.games.Result
-import net.alanproject.mygame.common.RANK_CNT
+import net.alanproject.domain.model.GameInfo
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
+import net.alanproject.mygame.common.RANK_CNT
 import net.alanproject.mygame.ui.list.adapter.ListRecyclerViewAdapter
 import timber.log.Timber
 
@@ -29,7 +29,7 @@ fun bindGameDetailImage(view: ImageView, image: String?) {
 }
 
 @BindingAdapter("games_update")
-fun bindUpdateGames(viewPager: ViewPager2, games: List<Result>?) {
+fun bindUpdateGames(viewPager: ViewPager2, games: List<GameInfo>?) {
 
     if(!games.isNullOrEmpty()){
         Timber.d("games.size:${games.size}")
@@ -38,7 +38,7 @@ fun bindUpdateGames(viewPager: ViewPager2, games: List<Result>?) {
 }
 
 @BindingAdapter("games_release")
-fun bindReleaseGames(viewPager: ViewPager2, games: List<Result>?) {
+fun bindReleaseGames(viewPager: ViewPager2, games: List<GameInfo>?) {
 
     if(!games.isNullOrEmpty()){
         Timber.d("games.size:${games.size}")
@@ -47,7 +47,7 @@ fun bindReleaseGames(viewPager: ViewPager2, games: List<Result>?) {
 }
 
 @BindingAdapter("games_upcoming")
-fun bindUpcomingGames(viewPager: ViewPager2, games: List<Result>?) {
+fun bindUpcomingGames(viewPager: ViewPager2, games: List<GameInfo>?) {
 
     if(!games.isNullOrEmpty()){
         Timber.d("games.size:${games.size}")
@@ -56,7 +56,7 @@ fun bindUpcomingGames(viewPager: ViewPager2, games: List<Result>?) {
 }
 
 @BindingAdapter("games_list")
-fun bindListGames(recyclerView: RecyclerView, games: List<Result>?) {
+fun bindListGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
 
     games?.let {
         Timber.d("games.size:${games.size}")
@@ -66,7 +66,7 @@ fun bindListGames(recyclerView: RecyclerView, games: List<Result>?) {
 }
 
 @BindingAdapter("games_rank")
-fun bindRankGames(recyclerView: RecyclerView, games: List<Result>?) {
+fun bindRankGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
 
     games?.let {
         Timber.d("games.size:${games.size}")
