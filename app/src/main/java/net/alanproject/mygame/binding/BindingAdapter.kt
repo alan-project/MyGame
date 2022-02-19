@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import net.alanproject.domain.model.response.games.Result
+import net.alanproject.mygame.common.RANK_CNT
 import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
@@ -15,6 +16,13 @@ import timber.log.Timber
 
 @BindingAdapter("gameImage")
 fun bindGameImage(view: ImageView, image: String?) {
+    view.load(image){
+        transformations(RoundedCornersTransformation())
+    }
+}
+
+@BindingAdapter("gameDetailImage")
+fun bindGameDetailImage(view: ImageView, image: String?) {
     view.load(image){
         transformations(RoundedCornersTransformation())
     }
@@ -62,7 +70,8 @@ fun bindRankGames(recyclerView: RecyclerView, games: List<Result>?) {
 
     games?.let {
         Timber.d("games.size:${games.size}")
-        (recyclerView.adapter as RankRecyclerViewAdapter).update(games.toMutableList())
+        (recyclerView.adapter as RankRecyclerViewAdapter).update(games.take(RANK_CNT).toMutableList())
 
     }
 }
+
