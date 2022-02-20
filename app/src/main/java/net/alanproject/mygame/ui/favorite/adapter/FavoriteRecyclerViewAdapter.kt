@@ -26,9 +26,12 @@ class FavoriteRecyclerViewAdapter(
 
     fun update(newGames:MutableList<GameInfo>){
         Timber.d("[favorite] result: $newGames")
-        val startPos = games.size
+//        val startPos = games.size
+//        games.addAll(newGames)
+//        notifyItemRangeChanged(startPos, games.size)
+        games.clear()
         games.addAll(newGames)
-        notifyItemRangeChanged(startPos, games.size)
+        notifyDataSetChanged()
 
     }
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -29,7 +30,9 @@ class FavoriteViewModel @Inject constructor(
 
             val result: StateFlow<List<GameInfo>> =
                 getAllFavoriteGames.get()
-                    .stateIn(scope = viewModelScope)
+                    .stateIn(
+                        scope = viewModelScope
+                    )
 
             Timber.d("[favorite] result: ${result.value}")
             _favoriteGames.value = result.value
