@@ -38,6 +38,13 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("args.gameId: ${args.gameId}")
         viewModel.onLoadGame(args.gameId)
+        initListener()
 
+    }
+
+    private fun initListener() {
+        binding.ivFavorite.setOnClickListener {
+            viewModel.onAddFavorite(args.gameId)
+        }
     }
 }

@@ -29,3 +29,4 @@ data class Publisher(
     val name: String = "",
     val slug: String = ""
 )
+

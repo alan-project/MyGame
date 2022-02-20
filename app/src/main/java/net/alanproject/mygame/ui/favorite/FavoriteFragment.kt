@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.FragmentFavoriteBinding
-import net.alanproject.mygame.ui.detail.DetailViewModel
+import net.alanproject.mygame.ui.favorite.adapter.FavoriteRecyclerViewAdapter
 
 @AndroidEntryPoint
 class FavoriteFragment: Fragment() {
@@ -30,5 +30,16 @@ class FavoriteFragment: Fragment() {
         binding.vm = viewModel
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.onLoadGames()
+        initAdapter()
+    }
+
+    private fun initAdapter() {
+        binding.rvFavorite.adapter = FavoriteRecyclerViewAdapter()
     }
 }
