@@ -25,38 +25,4 @@ data class GamesResp(
     val nofollowCollections: List<String> = listOf()
 )
 
-fun GamesResp.mapToDomain(): Games = Games(
-    count = count,
-    next = next,
-    results = results.map { gameInfoResp->
-        net.alanproject.domain.model.GameInfo(
-            id = gameInfoResp.id,
-            name = gameInfoResp.name,
-            released = gameInfoResp.released,
-            image = gameInfoResp.backgroundImage,
-            rating = gameInfoResp.rating,
-            added = gameInfoResp.added,
-            metacritic = gameInfoResp.metacritic,
-            playtime = gameInfoResp.playtime,
-            suggestionsCount = gameInfoResp.suggestionsCount,
-            genres = gameInfoResp.genres.map { genre ->
-                net.alanproject.domain.model.Genre(
-                    id = genre.id,
-                    name = genre.name,
-                    slug = genre.slug
-                )
-            },
-            tags = gameInfoResp.tags.map { tag ->
-                net.alanproject.domain.model.Tag(
-                    id = tag.id,
-                    name = tag.name,
-                    slug = tag.slug,
-                    language = tag.language
-                )
-            },
-            esrbRating = gameInfoResp.esrbRating?.name.orEmpty()
-        )
-    }
-)
-
 

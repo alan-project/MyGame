@@ -11,6 +11,7 @@ import net.alanproject.mygame.ui.home.adapter.HrzFullPagerAdapter
 import net.alanproject.mygame.ui.home.adapter.HrzSubPagerAdapter
 import net.alanproject.mygame.ui.home.rank.adapter.RankRecyclerViewAdapter
 import net.alanproject.mygame.common.RANK_CNT
+import net.alanproject.mygame.ui.favorite.adapter.FavoriteRecyclerViewAdapter
 import net.alanproject.mygame.ui.list.adapter.ListRecyclerViewAdapter
 import timber.log.Timber
 
@@ -61,6 +62,16 @@ fun bindListGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
     games?.let {
         Timber.d("games.size:${games.size}")
         (recyclerView.adapter as ListRecyclerViewAdapter).update(games.toMutableList())
+
+    }
+}
+
+@BindingAdapter("games_favorite")
+fun bindFavoriteGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
+
+    if(!games.isNullOrEmpty()){
+        Timber.d("games.size:${games.size}")
+        (recyclerView.adapter as FavoriteRecyclerViewAdapter).update(games.toMutableList())
 
     }
 }

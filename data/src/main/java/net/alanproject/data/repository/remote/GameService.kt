@@ -1,4 +1,4 @@
-package net.alanproject.data.source.remote
+package net.alanproject.data.repository.remote
 
 import net.alanproject.data.BuildConfig
 import net.alanproject.data.model.game.GameResp
