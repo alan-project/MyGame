@@ -1,4 +1,4 @@
-package net.alanproject.domain.usecase
+package net.alanproject.domain.usecase.favorite
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow

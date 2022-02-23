@@ -1,4 +1,4 @@
-package net.alanproject.domain.usecase
+package net.alanproject.domain.usecase.favorite
 
 interface DeleteAllFavoriteGames {
     suspend fun delete()

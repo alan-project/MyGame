@@ -1,21 +1,16 @@
-package net.alanproject.domain.usecase.impl
+package net.alanproject.domain.usecase.favorite.impl
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
-import net.alanproject.domain.model.Game
 import net.alanproject.domain.model.GameInfo
 import net.alanproject.domain.repository.GameRepository
-import net.alanproject.domain.usecase.GetAllFavoriteGames
-import net.alanproject.domain.util.Resource
-import timber.log.Timber
+import net.alanproject.domain.usecase.favorite.GetAllFavoriteGames
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class GetAllFavoriteGamesUsecase @Inject constructor(
     private val gameRepository: GameRepository
-):GetAllFavoriteGames {
+): GetAllFavoriteGames {
     override suspend fun get(): Flow<List<GameInfo>> {
 
 

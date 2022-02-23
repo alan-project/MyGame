@@ -1,8 +1,8 @@
-package net.alanproject.domain.usecase.impl
+package net.alanproject.domain.usecase.game.impl
 
 import net.alanproject.domain.model.Game
 import net.alanproject.domain.repository.GameRepository
-import net.alanproject.domain.usecase.GetGame
+import net.alanproject.domain.usecase.game.GetGame
 import net.alanproject.domain.util.Resource
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class GetGameUsecase @Inject constructor(
     private val gameRepository: GameRepository
-):GetGame {
+): GetGame {
     override suspend fun get(id: Int): Resource<Game> {
         val response = try{
             gameRepository.getGame(id)
