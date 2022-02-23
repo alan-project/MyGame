@@ -31,6 +31,13 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="@{model.name}"
             tools:text = "Game Name"/>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/bt_favorite"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_favorite"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

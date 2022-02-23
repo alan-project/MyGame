@@ -40,6 +40,8 @@ class FavoriteFragment: Fragment() {
     }
 
     private fun initAdapter() {
-        binding.rvFavorite.adapter = FavoriteRecyclerViewAdapter()
+        binding.rvFavorite.adapter = FavoriteRecyclerViewAdapter{gameInfo->
+            viewModel.removeFavorite(gameInfo.id)
+        }
     }
 }
