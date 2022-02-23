@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import net.alanproject.domain.model.Game
-import net.alanproject.domain.usecase.GetGame
-import net.alanproject.domain.usecase.InsertFavoriteGame
+import net.alanproject.domain.usecase.game.GetGame
+import net.alanproject.domain.usecase.favorite.InsertFavoriteGame
 import net.alanproject.domain.util.Resource
 import timber.log.Timber
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val getGame: GetGame,
-    private val insertFavoriteGame:InsertFavoriteGame,
+    private val insertFavoriteGame: InsertFavoriteGame,
 ) : ViewModel() {
 
     private val _game = MutableStateFlow(Game())

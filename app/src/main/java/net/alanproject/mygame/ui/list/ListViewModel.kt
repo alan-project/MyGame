@@ -6,9 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.alanproject.domain.model.Game
 import net.alanproject.domain.model.GameInfo
-import net.alanproject.domain.usecase.GetGames
+import net.alanproject.domain.usecase.game.GetGames
 import net.alanproject.domain.util.DateUnit
 import net.alanproject.domain.util.Resource
 import net.alanproject.domain.util.agoDate

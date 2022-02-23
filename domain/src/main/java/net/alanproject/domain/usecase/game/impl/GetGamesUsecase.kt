@@ -1,9 +1,9 @@
-package net.alanproject.domain.usecase.impl
+package net.alanproject.domain.usecase.game.impl
 
 import net.alanproject.domain.model.Games
 import net.alanproject.domain.util.Resource
 import net.alanproject.domain.repository.GameRepository
-import net.alanproject.domain.usecase.GetGames
+import net.alanproject.domain.usecase.game.GetGames
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton

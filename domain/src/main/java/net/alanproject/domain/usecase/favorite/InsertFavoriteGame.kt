@@ -1,4 +1,4 @@
-package net.alanproject.domain.usecase
+package net.alanproject.domain.usecase.favorite
 
 import net.alanproject.domain.model.Game
 

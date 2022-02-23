@@ -1,7 +1,7 @@
-package net.alanproject.domain.usecase.impl
+package net.alanproject.domain.usecase.favorite.impl
 
 import net.alanproject.domain.repository.GameRepository
-import net.alanproject.domain.usecase.DeleteFavoriteGame
+import net.alanproject.domain.usecase.favorite.DeleteFavoriteGame
 import javax.inject.Inject
 import javax.inject.Singleton
 

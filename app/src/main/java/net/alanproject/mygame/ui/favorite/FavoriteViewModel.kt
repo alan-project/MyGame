@@ -4,16 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import net.alanproject.domain.model.Game
 import net.alanproject.domain.model.GameInfo
-import net.alanproject.domain.usecase.DeleteFavoriteGame
-import net.alanproject.domain.usecase.GetAllFavoriteGames
-import timber.log.Timber
+import net.alanproject.domain.usecase.favorite.DeleteFavoriteGame
+import net.alanproject.domain.usecase.favorite.GetAllFavoriteGames
 import javax.inject.Inject
 
 
