@@ -10,7 +10,8 @@ import net.alanproject.mygame.databinding.ItemFavoriteListBinding
 import timber.log.Timber
 
 class FavoriteRecyclerViewAdapter(
-    private val games:MutableList<GameInfo> = mutableListOf()
+    private val games:MutableList<GameInfo> = mutableListOf(),
+    private val itemClickListener: (GameInfo)->Unit
 
 ) : RecyclerView.Adapter<FavoriteRecyclerViewAdapter.FavoriteViewHolder>() {
 
@@ -20,7 +21,7 @@ class FavoriteRecyclerViewAdapter(
             LayoutInflater.from(parent.context),
             R.layout.item_favorite_list, parent, false
         )
-        return FavoriteViewHolder(binding)
+        return FavoriteViewHolder(binding, itemClickListener)
 
     }
 
@@ -42,11 +43,15 @@ class FavoriteRecyclerViewAdapter(
     override fun getItemCount(): Int  = games.size
 
     class FavoriteViewHolder(
-        private val binding: ItemFavoriteListBinding
+        private val binding: ItemFavoriteListBinding,
+        private val itemClickListener: (GameInfo) -> Unit
     ):RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game:GameInfo){
             binding.model = game
+            binding.btFavorite.setOnClickListener{
+                itemClickListener(game)
+            }
             binding.executePendingBindings()
         }
     }

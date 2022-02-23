@@ -6,10 +6,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import net.alanproject.domain.model.Game
 import net.alanproject.domain.model.GameInfo
+import net.alanproject.domain.usecase.DeleteFavoriteGame
 import net.alanproject.domain.usecase.GetAllFavoriteGames
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,7 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val getAllFavoriteGames: GetAllFavoriteGames
+    private val getAllFavoriteGames: GetAllFavoriteGames,
+    private val deleteFavoriteGame: DeleteFavoriteGame
 ) : ViewModel() {
 
     private val _favoriteGames = MutableStateFlow<List<GameInfo>>(listOf())
@@ -28,18 +31,11 @@ class FavoriteViewModel @Inject constructor(
         viewModelScope.launch {
 
 
-            val result: StateFlow<List<GameInfo>> =
-                getAllFavoriteGames.get()
-                    .stateIn(
-                        scope = viewModelScope
-                    )
+            getAllFavoriteGames.get()
+                .collect { gameInfoList->
+                    _favoriteGames.value = gameInfoList
+                }
 
-            Timber.d("[favorite] result: ${result.value}")
-            _favoriteGames.value = result.value
-
-//            val favoriteGames: Resource<Flow<List<Game>>> =
-//                getAllFavoriteGames.get()
-//
 //
 //
 //
@@ -57,5 +53,9 @@ class FavoriteViewModel @Inject constructor(
 //                is Resource.Error -> Timber.e("result(error): ${result.message}")
 //            }
         }
+    }
+
+    fun removeFavorite(gameId:Int) {
+        viewModelScope.launch { deleteFavoriteGame.delete(gameId) }
     }
 }
