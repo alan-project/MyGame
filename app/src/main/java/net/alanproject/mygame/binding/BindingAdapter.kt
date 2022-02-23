@@ -69,7 +69,7 @@ fun bindListGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
 @BindingAdapter("games_favorite")
 fun bindFavoriteGames(recyclerView: RecyclerView, games: List<GameInfo>?) {
 
-    if(!games.isNullOrEmpty()){
+    if(games != null){
         Timber.d("games.size:${games.size}")
         (recyclerView.adapter as FavoriteRecyclerViewAdapter).update(games.toMutableList())
 

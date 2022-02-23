@@ -26,7 +26,7 @@ class FavoriteRecyclerViewAdapter(
     }
 
     fun update(newGames:MutableList<GameInfo>){
-        Timber.d("[favorite] result: $newGames")
+        Timber.d("[favorite] result.size: ${newGames.size}")
 
         games.clear()
         games.addAll(newGames)
