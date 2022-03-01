@@ -3,10 +3,13 @@ package net.alanproject.mygame.ui.list.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import net.alanproject.domain.model.GameInfo
 import net.alanproject.mygame.R
 import net.alanproject.mygame.databinding.ItemListBinding
+import net.alanproject.mygame.ui.home.HomeFragmentDirections
+import net.alanproject.mygame.ui.list.ListFragmentDirections
 
 class ListRecyclerViewAdapter(
     private val games:MutableList<GameInfo> = mutableListOf()
@@ -40,6 +43,11 @@ class ListRecyclerViewAdapter(
 
         fun bind(game:GameInfo){
             binding.model = game
+
+            binding.root.setOnClickListener {
+                val action = ListFragmentDirections.actionFragListToDetailFragment(game.id)
+                Navigation.findNavController(binding.root).navigate(action)
+            }
             binding.executePendingBindings()
         }
     }
